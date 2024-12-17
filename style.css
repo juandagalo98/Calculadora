@@ -1,0 +1,116 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(77, 77, 98, 0.899);
+    margin-top: 200px;
+}
+
+
+.contenedor {
+    background-color: rgb(0, 0, 0);
+    width: 90vh;
+    max-width:220px ;
+    height: 70vh;
+    max-height: 420px;
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 30px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-end; 
+    margin: auto;
+}
+
+
+.buttons{
+    width: 220px;
+    height: 250px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding-bottom:  20px;
+}
+
+
+.number-button {
+    border-radius: 100%;
+    border: none;
+    background-color: rgb(35, 34, 32);
+    color: aliceblue;  
+    cursor: pointer; 
+}
+
+
+.sign-button {
+    border-radius: 100%;
+    border: none;
+    background-color: rgb(241, 138, 60);
+    color: aliceblue;
+    cursor: pointer; 
+}
+
+.number-button, .sign-button {
+    aspect-ratio: 1 / 1;
+}
+
+#borrar, #parentesis, #cociente, #punto {
+    background-color: rgb(109, 106, 99);
+}
+
+#input-display{
+    margin-bottom: 20px;
+    width: 215px;
+    height: 40px;
+    background-color: black;
+    border: none;
+    color: white;
+    direction: rtl;
+    text-align: right;
+    font-size: 40px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-end; 
+    
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .contenedor {
+        width: 95%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .buttons {
+        gap: 3px;
+    }
+
+    .number-button, .sign-button {
+        font-size: 4vw;
+    }
+
+    #input-display {
+        font-size: 20px;
+        height: 30px;
+    }
+}
+
+/* Pantallas medianas (tabletas) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .contenedor {
+        width: 80%;
+        height: 80vh;
+    }
+
+    .number-button, .sign-button {
+        font-size: 18px;
+    }
+
+    #input-display {
+        font-size: 30px;
+        height: 40px;
+    }
+}
