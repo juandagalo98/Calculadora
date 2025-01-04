@@ -1,4 +1,5 @@
-const display = document.getElementById('input-display')
+const display1 = document.getElementById('input-display2')
+const display2 = document.getElementById('input-display')
 
 //BOTONES .number-button
 
@@ -17,7 +18,7 @@ const numero0 = document.getElementById('numero0')
 
 const borrar = document.getElementById('borrar')
 const parentesis = document.getElementById('parentesis')
-const cociente = document.getElementById('cociente')
+const cociente = document.getElementById('residuo')
 const divide = document.getElementById('divide')
 const multipli = document.getElementById('multiplicacion')
 const resta = document.getElementById('resta')
@@ -29,40 +30,41 @@ const punto = document.getElementById('punto')
 
 
 numero7.addEventListener('click',()=> {
-    display.value += '7'
+    display2.value += '7'
 });
 
 numero8.addEventListener('click',()=> {
-    display.value += '8'
+    display2.value += '8'
 });
 
 numero9.addEventListener('click',()=> {
-    display.value += '9'
+    display2.value += '9'
 });
 
 numero4.addEventListener('click',()=> {
-    display.value += '4'
+    display2.value += '4'
 });
 
 numero5.addEventListener('click',()=> {
-    display.value += '5'
+    display2.value += '5'
 });
 
 numero6.addEventListener('click',()=> {
-    display.value += '6'
+    display2.value += '6'
 });
 
 numero1.addEventListener('click',()=> {
-    display.value += '1'
+    display2.value += '1'
 });
 
 numero2.addEventListener('click',()=> {
-    display.value += '2'
+    display2.value += '2'
 });
 
 numero3.addEventListener('click',()=> {
-    display.value += '3'
+    display2.value += '3'
 });
+
 
 
 
@@ -71,54 +73,66 @@ let operador = ''
 
 const operadorSuma = document.getElementById('suma')
 operadorSuma.addEventListener('click',()=>{
-    num1 = parseFloat(display.value)
+    num1 = parseFloat(display2.value)
     operador = '+'
-    display.value = ''
+    display2.value = ''
 });
 
 const operadorResta = document.getElementById('resta')
 operadorResta.addEventListener('click',()=>{
-    num1 = parseFloat(display.value)
+    num1 = parseFloat(display2.value)
     operador = '-'
-    display.value = ''
+    display2.value = ''
 });
 
 const operadorMultipli = document.getElementById('multipli')
 operadorMultipli.addEventListener('click',()=>{
-    num1 = parseFloat(display.value)
-    operador = '*'
-    display.value = ''
+    num1 = parseFloat(display2.value)
+    operador = 'x'
+    display2.value = ''
 });
 
 const operadorDivide = document.getElementById('divide')
 operadorDivide.addEventListener('click',()=>{
-    num1 = parseFloat(display.value)
+    num1 = parseFloat(display2.value)
     operador = '÷'
-    display.value = ''
+    display2.value = ''
 });
+
+const operadorResiduo = document.getElementById('residuo')
+operadorResiduo.addEventListener('click',() =>{
+    num1 = parseFloat(display2.value)
+    operador ='%'
+    display2.value = ''
+
+})
 
 
 
 const botonBorrar = document.getElementById('borrar')
 botonBorrar.addEventListener('click', ()=>{
-    display.value = ''
+    display2.value = ''
     num1 = ''
     operador = null
+    display1.value = ''
 });
 
 
 
 const botonIgual = document.getElementById('igual')
 botonIgual.addEventListener('click', ()=>{
-    let num2 = parseFloat(display.value);
+    let num2 = parseFloat(display2.value);
     let resultado;
+    display1.value = num1 + operador + num2
 
 
 if (operador === '+'){
     resultado = num1 + num2;
-} else if ( operador === '-'){
+}else if (operador === '%'){
+    resultado = num1 % num2;
+}else if ( operador === '-'){
     resultado = num1 - num2;
-} else if ( operador === '*'){
+} else if ( operador === 'x'){
     resultado = num1 * num2;
 } else if ( operador === '÷'){
     if (num2 !== 0){
@@ -129,7 +143,7 @@ if (operador === '+'){
     
 };
 
-display.value = resultado;
+display2.value = resultado;
 num1 = null;
 operador = '';
 });
