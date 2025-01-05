@@ -18,12 +18,12 @@ const numero0 = document.getElementById('numero0')
 
 const borrar = document.getElementById('borrar')
 const parentesis = document.getElementById('parentesis')
-const cociente = document.getElementById('residuo')
+const porcentaje = document.getElementById('porcentaje')
 const divide = document.getElementById('divide')
 const multipli = document.getElementById('multiplicacion')
 const resta = document.getElementById('resta')
 const suma = document.getElementById('suma')
-const punto = document.getElementById('punto')
+const decimal = document.getElementById('decimal')
 
 
 //Asignamos los addEventListener
@@ -65,6 +65,20 @@ numero3.addEventListener('click',()=> {
     display2.value += '3'
 });
 
+numero0.addEventListener('click',()=>{
+    display2.value += '0'
+});
+
+
+
+//PUNTO DECIMAL 
+
+decimal.addEventListener('click', ()=>{
+    if (display2.value && !display1.value.includes('.') && !isNaN(display2.value)) {
+        display2.value += '.';  // Agregar el punto decimal
+    }
+});
+
 
 
 
@@ -99,51 +113,66 @@ operadorDivide.addEventListener('click',()=>{
     display2.value = ''
 });
 
-const operadorResiduo = document.getElementById('residuo')
-operadorResiduo.addEventListener('click',() =>{
+const operadorPorcentaje = document.getElementById('porcentaje')
+operadorPorcentaje.addEventListener('click', () => {
     num1 = parseFloat(display2.value)
-    operador ='%'
-    display2.value = ''
+    operador = '%'
+    display2.value = ''  // Limpia la pantalla para esperar el siguiente número
 
-})
-
+    if (!isNaN(num1)) {
+        // Muestra el porcentaje calculado directamente en display2
+        display2.value = num1 / 100;
+        display1.value = num1 + operador; // Muestra la operación en display1
+    } else {
+        display2.value = ''
+    }
+});
 
 
 const botonBorrar = document.getElementById('borrar')
 botonBorrar.addEventListener('click', ()=>{
-    display2.value = ''
-    num1 = ''
-    operador = null
-    display1.value = ''
+    if (display2.value.length > 0){
+        display2.value = display2.value.slice(0, -1);
+        display1.value = ''
+        num1 = ''
+        operador = null
+    }
 });
-
-
 
 const botonIgual = document.getElementById('igual')
 botonIgual.addEventListener('click', ()=>{
     let num2 = parseFloat(display2.value);
     let resultado;
-    display1.value = num1 + operador + num2
+    
 
-
-if (operador === '+'){
-    resultado = num1 + num2;
-}else if (operador === '%'){
-    resultado = num1 % num2;
-}else if ( operador === '-'){
-    resultado = num1 - num2;
-} else if ( operador === 'x'){
-    resultado = num1 * num2;
-} else if ( operador === '÷'){
-    if (num2 !== 0){
-        resultado = num1 / num2;
-    } else {
-        resultado = 'Error'
+    if (!['+', '-', 'x', '÷', '%'].includes(operador)) {
+        display1.value = 'Error';
+        return;
+    }
+    if (operador === '+'){
+        resultado = num1 + num2;
+    }else if (operador === '%'){
+        resultado = (num1 * num2) / 100;
+    }else if ( operador === '-'){
+        resultado = num1 - num2;
+    }else if ( operador === 'x'){
+        resultado = num1 * num2;
+    }else if ( operador === '÷'){
+        if (num2 !== 0){
+            resultado = num1 / num2;
+        } else {
+            resultado = 'Error'
+        }   
     }
     
-};
+    if (!isNaN(num1) && operador && !isNaN(num2)) {
+        display1.value = num1 + operador + num2
+    } else {
+        display1.value = 'Error';
+    }
 
-display2.value = resultado;
+
+display2.value = !isNaN(resultado) && Number.isFinite(resultado) ? parseFloat(resultado.toFixed(2)) : resultado;
 num1 = null;
 operador = '';
 });
